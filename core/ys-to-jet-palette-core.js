@@ -92,7 +92,7 @@ const YSToJETPaletteCore = (() => {
 
   const sanitizeAttackName = (name) => {
     let result = name.trim();
-    result = result.replace(/^(ダメージ／|回復量／)/, '').trim();
+    result = result.replace(/^(命中力／|ダメージ／|回復量／)/, '').trim();
     while (/^\[[^\]]+\]/.test(result)) {
       result = result.replace(/^\[[^\]]+\]\s*/, '').trim();
     }
