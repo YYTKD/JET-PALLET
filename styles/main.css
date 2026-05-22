@@ -187,6 +187,11 @@ input[type="number"]::-webkit-outer-spin-button {
     -moz-appearance: textfield;
 }
 
+input[type="checkbox"] {
+        -webkit-appearance: none;
+    margin: 0;
+}
+
 /* ========================================
    app: layout
    ======================================== */
@@ -202,9 +207,9 @@ input[type="number"]::-webkit-outer-spin-button {
 .app__content {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 32px;
+    margin-top: 60px;
     gap: 8px;
-    max-width: calc(720px + 16px);
+    width: 100%;
 }
 
 /* ========================================
@@ -575,6 +580,30 @@ dialog::backdrop {
     background: var(--color-bg-light);
 }
 
+/* ========================================
+   layout
+   ======================================== */
+
+.layout__bar {
+    background: var(--color-background);
+    position: fixed;
+    top: 38px;
+    height: 28px;
+    width: 92px;
+    border-radius: 0 0 4px 4px;
+    display: flex;
+    justify-content: space-evenly;
+    z-index: 900;
+}
+
+.layout__btn {
+    cursor: pointer;
+}
+
+.layout__btn:hover, 
+.layout__btn:has(:checked) > label {
+    color: var(--color-pink);
+}
 
 /* ========================================
    section
@@ -583,7 +612,16 @@ dialog::backdrop {
 /* セクション本体 */
 .section {
     flex: 1 720px;
-    max-width: 720px;
+    width: 100%;
+    max-width: calc(50% - 4px);
+    min-width: 0;
+    resize: both;
+
+    @media (width < 720px) {
+        width: -webkit-fill-available;
+        max-width: -webkit-fill-available;
+        flex-basis: calc(100vw - 16px); 
+    }    
 }
 
 /* セクションヘッダー */
@@ -596,7 +634,7 @@ dialog::backdrop {
     background: var(--color-background);
     border-bottom: 1px solid var(--color-current-line);
     padding: 4px 8px;
-    min-height: 32px;
+    height: 38px;
     width: 100%;
     border-radius: 4px 4px 0 0;
     font-weight: 500;
@@ -668,19 +706,17 @@ dialog .modal__body {
 
 /*タブ要素*/
 .tabs {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 38px 1fr;
 }
 
 .tabs__label {
-    display: flex;
+    grid-column: 1fr;
+    order: -1;
     background: var(--color-bg-dark);
     cursor: pointer;
     color: var(--color-current-line);
-    order: -1;
-    flex: 1;
     z-index: 20;
 }
 
@@ -692,8 +728,17 @@ dialog .modal__body {
 
 .tabs__panel {
     display: none;
-    order: 2;
-    flex: 1 720px;
+    width: 100%;
+    max-width: 720px;
+    min-width: 0;
+    grid-column: 1 / 3;
+
+    @media (width < 720px) {
+        width: -webkit-fill-available;
+        max-width: -webkit-fill-available;
+        flex-basis: calc(100vw - 16px); 
+    }    
+    
 }
 
 .tabs__label:has(:checked) {
@@ -708,8 +753,10 @@ dialog .modal__body {
 }
 
 .tabs__label:has(:checked)+.tabs__panel {
-    display: flex;
+    display: grid;
 }
+
+
 
 /* ========================================
    form
@@ -768,10 +815,6 @@ dialog .modal__body {
     height: 40px;
     width: 60px;
     cursor: pointer;
-}
-
-.form__grid input[type="checkbox"] {
-    display: none;
 }
 
 .drop-zone--active {
@@ -981,18 +1024,22 @@ dialog .modal__body {
 /* アイテムリスト */
 .list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 4px;
     padding: 4px;
     height: 320px;
     min-height: 100px;
+    width: 100%;
+    max-width: 100%;
     background: var(--color-bg-dark);
     border-radius: 4px;
     outline: 1px solid var(--color-selection);
-    resize: vertical;
+    resize: both;
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    transition: 0.2s ease;
 }
 
 .list::-webkit-scrollbar {
@@ -1003,6 +1050,7 @@ dialog .modal__body {
     display: flex;
     flex-direction: column;
     gap: 2px;
+    width: 100%;
 }
 
 
@@ -1053,11 +1101,24 @@ dialog .modal__body {
 }
 
 
-
 .list__index:hover .tooltip {
     top: 32px;
     left: -64px;
     opacity: 1;
+}
+
+/*整列切り替え*/
+
+body:has(.culm_1 input:checked) .list__category {
+    width: 100% !important;
+}
+
+body:has(.culm_2 input:checked) .list__category {
+    width: calc(50% - 2px) !important;
+}
+
+body:has(.culm_3 input:checked) .list__category {
+    width: calc(33% - 2px) !important;
 }
 
 /* オートコンプリート */
@@ -1512,7 +1573,9 @@ dialog .modal__body {
     transition: transform .25s;
 }
 
-
+.section__switch:hover {
+    color: var(--color-pink);
+}
 
 /* ========================================
    ユーティリティクラス
