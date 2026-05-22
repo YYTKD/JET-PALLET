@@ -1328,7 +1328,7 @@ function renderMacroDictionary() {
             <details class="list__category list__category--uncategorized" data-category="none" open>
                 <summary class="list__category-header" data-category="none">
                     <span class="material-symbols-rounded" style="margin-right: 4px;">arrow_right</span>
-                    <span style="word-break: break-all;">未分類</span>
+                    <span>未分類</span>
                 </summary>
                 <div class="list__category-body" data-category="none">
                     ${renderMacroItems(categoryMap['none'])}
@@ -1342,7 +1342,7 @@ function renderMacroDictionary() {
             <details class="list__category" open data-category="${escapeHtml(name)}">
                 <summary class="list__category-header" data-category="${escapeHtml(name)}">
                     <span class="material-symbols-rounded" style="margin-right: 4px;">arrow_right</span>
-                    <span style="word-break: break-all;">${escapeHtml(name)}</span>
+                    <span>${escapeHtml(name)}</span>
                 </summary>
                 <div class="list__category-body" data-category="${escapeHtml(name)}">
                     ${renderMacroItems(categoryMap[name])}
@@ -2005,7 +2005,7 @@ function renderBuffs() {
     const sections = [];
 
     sections.push(`
-        <details class="list__category list__category--uncategorized" data-category="none" open>
+        <details class="list__category list__category--uncategorized" data-category="none" style="order:100" open>
             <summary class="list__category-header" data-category="none">
                 <span class="material-symbols-rounded" style="margin-right: 4px;">arrow_right</span>
             </summary>
@@ -2019,7 +2019,7 @@ function renderBuffs() {
         sections.push(`
             <details class="list__category" open data-category="${escapeHtml(name)}">
                 <summary class="list__category-header" data-category="${escapeHtml(name)}" draggable="true">
-                    <span class="material-symbols-rounded" style="margin-right: 4px;">arrow_right</span><span style="word-break: break-all;">${escapeHtml(name)}</span>
+                    <span class="material-symbols-rounded" style="margin-right: 4px;">arrow_right</span><span">${escapeHtml(name)}</span>
                 </summary>
                 <div class="list__category-body" data-category="${escapeHtml(name)}">
                     ${renderBuffItems(categoryMap[name])}
@@ -2572,7 +2572,7 @@ function renderPackage(type) {
     const sections = [];
 
     sections.push(`
-        <details class="list__category list__category--uncategorized" data-category="none" open>
+        <details class="list__category list__category--uncategorized" data-category="none" style="order:100" open>
             <summary class="list__category-header" data-category="none">
                 <span class="material-symbols-rounded" style="margin-right: 4px;">arrow_right</span>
             </summary>
@@ -2586,7 +2586,7 @@ function renderPackage(type) {
         sections.push(`
             <details class="list__category" open data-category="${escapeHtml(name)}">
                 <summary class="list__category-header" data-category="${escapeHtml(name)}" draggable="true">
-                    <span class="material-symbols-rounded" style="margin-right: 4px;">arrow_right</span><span style="word-break: break-all;">${escapeHtml(name)}</span>
+                    <span class="material-symbols-rounded" style="margin-right: 4px;">arrow_right</span><span>${escapeHtml(name)}</span>
                 </summary>
                 <div class="list__category-body" data-category="${escapeHtml(name)}">
                     ${renderPackageItems(type, categoryMap[name])}

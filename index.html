@@ -19,8 +19,7 @@
     <header class="site-header">
         <img class="site-header__logo" src="assets/logos/logo.svg" />
         <div class="site-header__menu">
-            <a type="button" class="site-header__menu-item site-header__menu-item--settings" id="settingsToggle"
-                aria-haspopup="true" aria-expanded="false">
+            <a type="button" class="site-header__menu-item site-header__menu-item--settings" id="settingsToggle" aria-haspopup="true" aria-expanded="false">
                 <div class="tooltip tooltip--settings">設定</div>
                 <span class="material-symbols-rounded">settings</span>
             </a>
@@ -57,6 +56,21 @@
     </header>
 
     <div class="app">
+        
+        <div class="layout__bar">
+            <label class="layout__btn culm_1">
+                <input type="radio" name="layout_select" id="layout_1" checked />
+                        <label for="layout_1" class="material-symbols-rounded">filter_1</label>
+            </label>
+            <label class="layout__btn culm_2">
+                <input type="radio" name="layout_select" id="layout_2" />
+                        <label for="layout_2" class="material-symbols-rounded">filter_2</label>
+            </label>
+            <label class="layout__btn culm_3">
+                <input type="radio" name="layout_select" id="layout_3" />
+                        <label for="layout_3" class="material-symbols-rounded">filter_3</label>
+            </label>
+        </div>
 
         <div class="app__content">
             <!--データ管理　モーダル-->
@@ -192,8 +206,9 @@
                     </div>
                 </div>
             </dialog>
+            
             <!--バフ/デバフ-->
-            <div class="section">
+            <div class="section buffSection">
                 <div class="section__header">
                     <span class="material-symbols-rounded">azm</span>
                     <span class="section__title">バフ/デバフ</span>
